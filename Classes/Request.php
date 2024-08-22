@@ -1,4 +1,7 @@
 <?php
+
+namespace furnitureStore\Classes;
+
 class Request
 {
     public function get(string $key): string
@@ -6,9 +9,13 @@ class Request
         return $_GET[$key];
     }
 
-    public function post(string $key): string
+    public function post(string $key):string
     {
         return $_POST[$key];
+    }
+    public function files(string $key): array
+    {
+        return $_FILES[$key]  ?? [];
     }
     public function postClean(string $key): string
 
@@ -24,5 +31,13 @@ class Request
     public function postHas(string $key): bool
     {
         return isset($_POST[$key]);
+    }
+    public function redirect($path)
+    {
+        header("location:" . URL . $path);
+    }
+    public function AdminRedirect($path)
+    {
+        header("location:" . AdminURL . $path);
     }
 }

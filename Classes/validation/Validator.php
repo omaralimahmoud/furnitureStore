@@ -1,12 +1,17 @@
 <?php
+
+namespace furnitureStore\Classes\Validation;
+
 class Validator
 {
     private $errors = [];
 
     public function validate(string $name, $value, array $rules)
     {
+
         foreach ($rules as $rule) {
-            $object = new $rule;
+            $ClassName = "furnitureStore\\Classes\\Validation\\" . $rule;
+            $object = new $ClassName;
 
             $error = $object->check($name, $value);
             if ($error !== false) {

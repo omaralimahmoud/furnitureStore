@@ -1,4 +1,5 @@
 <?php
+namespace furnitureStore\Classes;
 class dataBase
 {
     protected  $Connection;
@@ -7,7 +8,7 @@ class dataBase
     public function connect()
 
     {
-        $this->Connection = mysqli_connect('localhost', 'root', '', 'techstore');
+        $this->Connection = mysqli_connect(DB_SERVENAME, DB_USERNAME, DB_PASSWORD, DB_NAME);
     }
 
 
@@ -28,7 +29,7 @@ class dataBase
     {
         $sql = "SELECT $fields FROM $this->table WHERE $conditions ";
         $result = mysqli_query($this->Connection, $sql);
-        return mysqli_fetch_all($result);
+        return mysqli_fetch_all($result,MYSQLI_ASSOC);
     }
 
     public function getCount(): int
@@ -44,6 +45,13 @@ class dataBase
         $sql = "INSERT INTO $this->table ($fields) VALUES ($values) ";
         return  $result = mysqli_query($this->Connection, $sql);
     }
+    public function insertAndGetId(string $fields, string $values)
+    {
+        $sql = "INSERT INTO $this->table ($fields) VALUES ($values) ";
+        $result = mysqli_query($this->Connection, $sql);
+          return mysqli_insert_id($this->Connection);
+    }
+
 
     public function update(string $set, $id): bool
     {

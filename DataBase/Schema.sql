@@ -54,10 +54,10 @@ CREATE TABLE  order_details(
 CREATE TABLE  admins(
    id   INT UNSIGNED NOT NULL AUTO_INCREMENT,
    name  VARCHAR(255) NOT NULL,
-   email  VARCHAR(255) NOT NULL ,
+   email  VARCHAR(255) NOT NULL UNIQUE ,
    phone VARCHAR(255)  NOT NULL,
    `password` VARCHAR(255) NOT NULL,
-    is_super    ENUM('yes','no') NOT NULL DEFAULT 'no',
+    roles    ENUM('admin','superAdmin') NOT NULL DEFAULT 'admin',
 
    created_at DATETIME NOT NULL DEFAULT NOW(),
    

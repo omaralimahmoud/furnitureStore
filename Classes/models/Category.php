@@ -1,4 +1,6 @@
 <?php
+namespace furnitureStore\Classes\Models;
+use furnitureStore\Classes\DataBase;
 class Category extends DataBase
 {
 

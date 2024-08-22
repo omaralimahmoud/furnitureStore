@@ -1,5 +1,8 @@
 <?php
-class session
+
+namespace furnitureStore\Classes;
+
+class Session
 {
     public function __construct()
     {
@@ -12,17 +15,17 @@ class session
     {
         $_SESSION[$key] = $value;
     }
-    
-    public function  get(string $key): string
+
+    public function  get(string $key): mixed
     {
-        return $_SESSION[$key];
+        return $_SESSION[$key]?? null;
     }
-    
+
     public function has(string $key): bool
     {
         return isset($_SESSION[$key]);
     }
-    
+
     public function remove(string $key)
     {
         unset($_SESSION[$key]);
